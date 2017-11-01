@@ -2,9 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://evilchurch.github.io/about_me/index.html</loc>
+    
+    <lastmod>2017-11-01T15:59:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/php-unserialize.html</loc>
+    
+    <lastmod>2017-11-01T15:37:56.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/php-security.html</loc>
+    
+    <lastmod>2017-11-01T15:37:43.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/file-upload.html</loc>
+    
+    <lastmod>2017-11-01T15:37:29.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/ctfd.html</loc>
+    
+    <lastmod>2017-11-01T15:37:11.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/a-classical-bug.html</loc>
+    
+    <lastmod>2017-11-01T15:36:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://evilchurch.github.io/CHURCH/hello-world.html</loc>
     
-    <lastmod>2017-08-10T01:23:53.000Z</lastmod>
+    <lastmod>2017-11-01T15:35:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://evilchurch.github.io/CHURCH/an-interesting-bug.html</loc>
+    
+    <lastmod>2017-03-12T15:01:40.000Z</lastmod>
     
   </url>
   
