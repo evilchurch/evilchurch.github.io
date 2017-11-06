@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 文件上传绕过姿势 | 教堂</title><meta name="description" content="PHP文件上传绕过"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/wooyundrops" target="_self" class="nav-list-link">DROPS</a></li><li class="nav-list-item"><a href="https://github.com/evilchurch" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/about_me" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">文件上传绕过姿势</h1><div class="post-info">2017年3月4日</div><div class="post-content"><p>文件上传漏洞应该是渗透测试中用的比较多的漏洞了，毕竟可以很方便的getshell，可是网站也会有很多限制，这里就总结一下文件上传的绕过姿势。</p>
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 文件上传绕过姿势 | 教堂</title><meta name="description" content="PHP文件上传绕过"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/evilchurch" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/other/friends-link.html" target="_self" class="nav-list-link">LINKS</a></li><li class="nav-list-item"><a href="/other/about_me.html" target="_self" class="nav-list-link">ABOUT</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">文件上传绕过姿势</h1><div class="post-info">2017年3月4日</div><div class="post-content"><p>文件上传漏洞应该是渗透测试中用的比较多的漏洞了，毕竟可以很方便的getshell，可是网站也会有很多限制，这里就总结一下文件上传的绕过姿势。</p>
 <a id="more"></a>
 <h2 id="绕过姿势"><a href="#绕过姿势" class="headerlink" title="绕过姿势"></a>绕过姿势</h2><h4 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h4><p>客户端使用JavaScript校验上传文件的后缀名，在文件未上传到服务器时，就对文件进行验证，任何客户端的验证都是不安全的。</p>
 <p>绕过也是比较简单</p>
@@ -11,8 +11,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">GIF89a</div><div class="line">(binary data)</div><div class="line">木马</div><div class="line">(binary data)</div></pre></td></tr></table></figure>
 <h5 id="文件扩展名"><a href="#文件扩展名" class="headerlink" title="文件扩展名"></a>文件扩展名</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1. 黑名单漏掉的规则：.asa .cer</div><div class="line">2. 大小写：pHp AsP</div><div class="line">3. 混搭：.php1 .php2</div></pre></td></tr></table></figure>
 <h5 id="截断绕过"><a href="#截断绕过" class="headerlink" title="截断绕过"></a>截断绕过</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0x00截断：构造如test.php(0x00).jpg的文件</div></pre></td></tr></table></figure>
-<p><img src="/img/upload1.png" alt=""></p>
-<p><img src="/img/upload2.png" alt=""></p>
+<p><img src="/other/img/upload1.png" alt=""></p>
+<p><img src="/other/img/upload2.png" alt=""></p>
 <h5 id="服务器解析漏洞绕过"><a href="#服务器解析漏洞绕过" class="headerlink" title="服务器解析漏洞绕过"></a>服务器解析漏洞绕过</h5><h6 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h6><p>低版本(&lt;7.0)时</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">1. 当文件夹格式为*.asp、*.asa时，其目录下任意文件都会被解析为asp</div><div class="line">2. 当文件为*.asp;1.jpg时，会被解析为asp(默认不解析;号后面的内容)</div></pre></td></tr></table></figure>
 <p>IIS(7.0/7.5)</p>
@@ -36,14 +36,14 @@
 <h6 id="htaccess文件攻击"><a href="#htaccess文件攻击" class="headerlink" title=".htaccess文件攻击"></a>.htaccess文件攻击</h6><p>通过<code>.htaccess</code>文件调用php解析器去解析.jpg(或者其他)文件，<code>.haccess</code>文件代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;FilesMatch \.jpg$&gt;</div><div class="line">    SetHandler application/x-httpd-php</div><div class="line">&lt;/FilesMatch&gt;</div></pre></td></tr></table></figure>
 <p>然后上传扩展为.jpg的任意文件马都会被解析为php</p>
-<p><img src="/img/upload3.png" alt=""></p>
-<p><img src="/img/upload4.png" alt=""></p>
+<p><img src="/other/img/upload3.png" alt=""></p>
+<p><img src="/other/img/upload4.png" alt=""></p>
 <p><em>注：<code>.htaccess</code>是apache服务器中的一个配置文件,不是上传的文件的黑名单之内 ,所以<code>.htaccess</code>文件是可以上传成功。</em></p>
 <h6 id="user-ini文件攻击"><a href="#user-ini文件攻击" class="headerlink" title=".user.ini文件攻击"></a>.user.ini文件攻击</h6><p>只要中间键是以fastcgi运行的php都可以用这个方法，.user.ini能被动态加载，它也有两个配置项：auto_append_file和auto_prepend_file，直接在.user.ini中添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">auto_prepend_file=x.jpg</div></pre></td></tr></table></figure>
 <p>就可以让正常的php文件执行前自动包含x.jpg(图片马)，类似于require()</p>
-<p><img src="/img/upload5.png" alt=""></p>
-<p><img src="/img/upload6.png" alt=""></p>
+<p><img src="/other/img/upload5.png" alt=""></p>
+<p><img src="/other/img/upload6.png" alt=""></p>
 <p><em>注：前提是含有.user.ini的文件夹下需要有正常的php文件</em></p>
 <p><br></p>
 <p><strong>参考</strong></p>
