@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://evilchurch.github.io/"/>
+  <link href="https://root2ch.github.io/"/>
   <updated>2017-11-06T03:02:02.000Z</updated>
-  <id>https://evilchurch.github.io/</id>
+  <id>https://root2ch.github.io/</id>
   
   <author>
     <name>教堂</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>文件上传绕过姿势</title>
-    <link href="https://evilchurch.github.io/CHURCH/file-upload.html"/>
-    <id>https://evilchurch.github.io/CHURCH/file-upload.html</id>
+    <link href="https://root2ch.github.io/CHURCH/file-upload.html"/>
+    <id>https://root2ch.github.io/CHURCH/file-upload.html</id>
     <published>2017-03-04T12:11:50.000Z</published>
     <updated>2017-11-06T03:02:02.000Z</updated>
     
@@ -36,8 +36,8 @@
   
   <entry>
     <title>一个有趣的trick</title>
-    <link href="https://evilchurch.github.io/CHURCH/an-interesting-bug.html"/>
-    <id>https://evilchurch.github.io/CHURCH/an-interesting-bug.html</id>
+    <link href="https://root2ch.github.io/CHURCH/an-interesting-bug.html"/>
+    <id>https://root2ch.github.io/CHURCH/an-interesting-bug.html</id>
     <published>2017-03-01T09:11:16.000Z</published>
     <updated>2017-11-06T03:00:05.000Z</updated>
     
@@ -60,8 +60,8 @@
   
   <entry>
     <title>p师傅的经典漏洞(小密圈的那些姿势)</title>
-    <link href="https://evilchurch.github.io/CHURCH/a-classical-bug.html"/>
-    <id>https://evilchurch.github.io/CHURCH/a-classical-bug.html</id>
+    <link href="https://root2ch.github.io/CHURCH/a-classical-bug.html"/>
+    <id>https://root2ch.github.io/CHURCH/a-classical-bug.html</id>
     <published>2017-02-27T14:51:08.000Z</published>
     <updated>2017-11-06T03:01:22.000Z</updated>
     
@@ -80,12 +80,12 @@
   
   <entry>
     <title>CTFd折腾记录</title>
-    <link href="https://evilchurch.github.io/CHURCH/ctfd.html"/>
-    <id>https://evilchurch.github.io/CHURCH/ctfd.html</id>
+    <link href="https://root2ch.github.io/CHURCH/ctfd.html"/>
+    <id>https://root2ch.github.io/CHURCH/ctfd.html</id>
     <published>2017-02-01T02:01:20.000Z</published>
-    <updated>2017-11-06T03:01:36.000Z</updated>
+    <updated>2017-11-06T05:38:28.000Z</updated>
     
-    <content type="html"><![CDATA[<p>去年看到不少高校都有自己的ctf练习平台，就想着给学校社团也搭一个，期间也尝试过<a href="https://github.com/facebook/fbctf" target="_blank" rel="external">fbctf</a>，界面确实够炫酷，可就是太臃肿，就想着试试<a href="https://github.com/isislab/CTFd" target="_blank" rel="external">CTFd</a>，测试一段时间，觉着还算稳定，就把折腾的思路记录一下，免得大家多走弯路。</p><a id="more"></a><h2 id="Flask安装"><a href="#Flask安装" class="headerlink" title="Flask安装"></a>Flask安装</h2><p><code>需求的环境是要能使用apt的(ubuntu或者debian之类)</code></p><p><em>以下全部在ubuntu16.04下测试</em></p><ol><li><p>安装git</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install git</div></pre></td></tr></table></figure></li><li><p>安装pip</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install python-pip</div></pre></td></tr></table></figure></li><li><p>安装Flask</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install Flask</div></pre></td></tr></table></figure></li><li><p>下载&amp;安装&amp;运行CTFd</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo git clone https://github.com/isislab/CTFd.git</div><div class="line">cd CTFd</div><div class="line">sudo ./prepare.sh</div><div class="line">sudo python serve.py</div></pre></td></tr></table></figure></li></ol><p>但是，看各位师傅说这样直接运行性能很差，所以也可以用gunicorn</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo pip install gunicorn</div><div class="line">sudo gunicorn --bind 0.0.0.0:4000 -w 1 "CTFd:create_app()"</div></pre></td></tr></table></figure><p>至此平台就搭建完成了，在浏览器访问你的服务器公网ip:4000就可以进入了.</p><p><img src="/other/img/ctfd.png" alt=""></p><h2 id="Nginx-uwsgi"><a href="#Nginx-uwsgi" class="headerlink" title="Nginx + uwsgi"></a>Nginx + uwsgi</h2><p>看画船师傅说flask和gunicorn在低配服务器上性能不好(官方也说只能用来测试)，就折腾了一下Nginx + uwsgi</p><ol><li><p>安装nginx&amp;uwsgi</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt install nginx</div><div class="line">sudo pip install uwsgi</div></pre></td></tr></table></figure></li><li><p>配置nginx</p><p>在/etc/nginx/sites-available/目录，创建一个站点文件(删除default文件)</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">  listen 80;</div><div class="line">  server_name www.site.com;</div><div class="line"></div><div class="line">  location / &#123;</div><div class="line">    include uwsgi_params;</div><div class="line">    uwsgi_pass unix:/tmp/uwsgi.sock;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>cp文件到/etc/nginx/sites-enable/下(删除default文件)</p></li><li><p>运行</p><p>切换到CTFd目录下</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service nginx start</div><div class="line">sudo uwsgi -s /tmp/uwsgi.sock -w "CTFd:create_app()"</div></pre></td></tr></table></figure><p>访问站点，若502错误</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod 777 /tmp/uwsgi.sock</div></pre></td></tr></table></figure></li><li><p>启动/停止一键脚本(画船师傅的)</p><p><em>start.sh</em></p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo nohup uwsgi -s /tmp/uwsgi.sock -w "CTFd:create_app()"&amp;</div><div class="line">service nginx start</div><div class="line">sudo chmod 777 /tmp/uwsgi.sock</div></pre></td></tr></table></figure><p><em>stop.sh</em></p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep uwsgi | grep -v grep | awk '&#123;print $2&#125;' | xargs kill -9</div><div class="line">service nginx stop</div></pre></td></tr></table></figure></li></ol><p><br></p><p><strong>参考：</strong></p><p><a href="http://www.ifuryst.com/archives/CTFd.html" target="_blank" rel="external">CTFd搭建CTF平台</a></p><p><a href="http://blog.nuptzj.cn/?p=21" target="_blank" rel="external">CTFd折腾笔记</a></p><p><a href="https://blog.kings-way.info/?p=596" target="_blank" rel="external">Python Web（mainly Flask）环境折腾小记</a></p>]]></content>
+    <content type="html"><![CDATA[<p>去年看到不少高校都有自己的ctf练习平台，就想着给学校社团也搭一个，期间也尝试过<a href="https://github.com/facebook/fbctf" target="_blank" rel="external">fbctf</a>，界面确实够炫酷，可就是太臃肿，就想着试试<a href="https://github.com/isislab/CTFd" target="_blank" rel="external">CTFd</a>，测试一段时间，觉着还算稳定，就把折腾的思路记录一下，免得大家多走弯路。</p><a id="more"></a><h2 id="Flask安装"><a href="#Flask安装" class="headerlink" title="Flask安装"></a>Flask安装</h2><p><code>需求的环境是要能使用apt的(ubuntu或者debian之类)</code></p><p><em>以下全部在ubuntu16.04下测试</em></p><ol><li><p>安装git</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install git</div></pre></td></tr></table></figure></li><li><p>安装pip</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install python-pip</div></pre></td></tr></table></figure></li><li><p>安装Flask</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install Flask</div></pre></td></tr></table></figure></li><li><p>下载&amp;安装&amp;运行CTFd</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">sudo git clone https://github.com/isislab/CTFd.git</div><div class="line">cd CTFd</div><div class="line">sudo ./prepare.sh</div><div class="line">sudo python serve.py</div></pre></td></tr></table></figure></li></ol><p>但是，看各位师傅说这样直接运行性能很差，所以也可以用gunicorn</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo pip install gunicorn</div><div class="line">sudo gunicorn --bind 0.0.0.0:4000 -w 1 "CTFd:create_app()"</div></pre></td></tr></table></figure><p>至此平台就搭建完成了，在浏览器访问你的服务器公网ip:4000就可以进入了.</p><p><img src="/other/img/ctfd.png" alt=""></p><h2 id="Nginx-uwsgi"><a href="#Nginx-uwsgi" class="headerlink" title="Nginx + uwsgi"></a>Nginx + uwsgi</h2><p>看画船师傅说flask和gunicorn在低配服务器上性能不好(官方也说只能用来测试)，就折腾了一下Nginx + uwsgi</p><ol><li><p>安装nginx&amp;uwsgi</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt install nginx</div><div class="line">sudo pip install uwsgi</div></pre></td></tr></table></figure></li><li><p>配置nginx</p><p>在/etc/nginx/sites-available/目录，创建一个站点文件(删除default文件)</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="section">server</span> &#123;</div><div class="line">  <span class="attribute">listen</span> <span class="number">80</span>;</div><div class="line">  <span class="attribute">server_name</span> www.site.com;</div><div class="line"></div><div class="line">  <span class="attribute">location</span> / &#123;</div><div class="line">    <span class="attribute">include</span> uwsgi_params;</div><div class="line">    <span class="attribute">uwsgi_pass</span> unix:/tmp/uwsgi.sock;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>cp文件到/etc/nginx/sites-enable/下(删除default文件)</p></li><li><p>运行</p><p>切换到CTFd目录下</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">service nginx start</div><div class="line">sudo uwsgi -s /tmp/uwsgi.sock -w "CTFd:create_app()"</div></pre></td></tr></table></figure><p>访问站点，若502错误</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod 777 /tmp/uwsgi.sock</div></pre></td></tr></table></figure></li><li><p>启动/停止一键脚本(画船师傅的)</p><p><em>start.sh</em></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo nohup uwsgi -s /tmp/uwsgi.sock -w <span class="string">"CTFd:create_app()"</span>&amp;</div><div class="line">service nginx start</div><div class="line">sudo chmod 777 /tmp/uwsgi.sock</div></pre></td></tr></table></figure><p><em>stop.sh</em></p><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep uwsgi | grep -v grep | awk <span class="string">'&#123;print $2&#125;'</span> | xargs <span class="built_in">kill</span> -9</div><div class="line">service nginx stop</div></pre></td></tr></table></figure></li></ol><p><br></p><p><strong>参考：</strong></p><p><a href="http://www.ifuryst.com/archives/CTFd.html" target="_blank" rel="external">CTFd搭建CTF平台</a></p><p><a href="http://blog.nuptzj.cn/?p=21" target="_blank" rel="external">CTFd折腾笔记</a></p><p><a href="https://blog.kings-way.info/?p=596" target="_blank" rel="external">Python Web（mainly Flask）环境折腾小记</a></p>]]></content>
     
     <summary type="html">
     
@@ -98,8 +98,8 @@
   
   <entry>
     <title>聊一聊PHP反序列化漏洞</title>
-    <link href="https://evilchurch.github.io/CHURCH/php-unserialize.html"/>
-    <id>https://evilchurch.github.io/CHURCH/php-unserialize.html</id>
+    <link href="https://root2ch.github.io/CHURCH/php-unserialize.html"/>
+    <id>https://root2ch.github.io/CHURCH/php-unserialize.html</id>
     <published>2016-11-04T11:20:34.000Z</published>
     <updated>2017-11-01T16:02:00.000Z</updated>
     
@@ -116,8 +116,8 @@
   
   <entry>
     <title>PHP一些特性引发的安全问题</title>
-    <link href="https://evilchurch.github.io/CHURCH/php-security.html"/>
-    <id>https://evilchurch.github.io/CHURCH/php-security.html</id>
+    <link href="https://root2ch.github.io/CHURCH/php-security.html"/>
+    <id>https://root2ch.github.io/CHURCH/php-security.html</id>
     <published>2016-11-01T09:31:16.000Z</published>
     <updated>2017-11-01T16:01:53.000Z</updated>
     
@@ -134,8 +134,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="https://evilchurch.github.io/CHURCH/hello-world.html"/>
-    <id>https://evilchurch.github.io/CHURCH/hello-world.html</id>
+    <link href="https://root2ch.github.io/CHURCH/hello-world.html"/>
+    <id>https://root2ch.github.io/CHURCH/hello-world.html</id>
     <published>2016-10-05T06:51:18.000Z</published>
     <updated>2017-11-01T15:35:47.000Z</updated>
     
