@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 原始地址：//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/simple-demo.html -->
+    <base href="//webapi.amap.com/ui/1.0/ui/misc/PathSimplifier/examples/" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>简单路径</title>
+    <style>
+    html,
+    body,
+    #container {
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.8&key=bbe418ac191f6ed2eb0c8aa64aed00ce'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    //创建地图
+    var map = new AMap.Map('container', {
+        zoom: 4
+    });
+
+    AMapUI.load(['ui/misc/PathSimplifier', 'lib/$'], function(PathSimplifier, $) {
+
+        if (!PathSimplifier.supportCanvas) {
+            alert('当前环境不支持 Canvas！');
+            return;
+        }
+
+        var pathSimplifierIns = new PathSimplifier({
+            zIndex: 100,
+            //autoSetFitView:false,
+            map: map, //所属的地图实例
+
+            getPath: function(pathData, pathIndex) {
+
+                return pathData.path;
+            },
+            getHoverTitle: function(pathData, pathIndex, pointIndex) {
+
+                if (pointIndex >= 0) {
+                    //point 
+                    return pathData.name + '，点：' + pointIndex + '/' + pathData.path.length;
+                }
+
+                return pathData.name + '，点数量' + pathData.path.length;
+            },
+            renderOptions: {
+
+                renderAllPointsIfNumberBelow: 100 //绘制路线节点，如不需要可设置为-1
+            }
+        });
+
+        window.pathSimplifierIns = pathSimplifierIns;
+
+        //设置数据
+        pathSimplifierIns.setData([{
+            name: '路线0',
+            path: [
+                [120.606141,32.383339],
+                [120.504023,32.546959],
+                [120.118476,32.534618],
+                [119.980619,32.528806],
+                [119.578713,32.458462],
+                [119.350943,32.38955],
+                [118.797616,32.087229],
+                [118.79873,31.968461],
+                [117.441516,32.901789],
+                [117.251213,33.675586],
+                [117.069267,35.555615],
+                [117.036059,36.172676],
+                [116.894618,36.669446],
+                [116.767926,38.306312],
+                [117.061096,39.056913],
+                [116.378532,39.86534]
+            ]
+        }]);
+
+        //对第一条线路（即索引 0）创建一个巡航器
+        var navg1 = pathSimplifierIns.createPathNavigator(0, {
+            loop: false, //循环播放
+            speed: 300000 //巡航速度，单位千米/小时
+        });
+
+        navg1.start();
+    });
+    </script>
+</body>
+
+</html>
